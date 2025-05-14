@@ -1,7 +1,35 @@
+using Examen_Roman_Qquelcca.Repositories.Interfaces;
+using Lab_09_Roman_Qquelcca.Models;
+using Lab_09_Roman_Qquelcca.Repositories;
+using Lab_09_Roman_Qquelcca.Repositories.Unit;
+using Lab_09_Roman_Qquelcca.Services;
+using Lab_09_Roman_Qquelcca.Services.LINQ;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Configuración de DbContext con MySQL
+builder.Services.AddDbContext<LinQDBContext>(options =>
+    options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Registrar los repositorios genéricos
+builder.Services.AddScoped<IGenericRepository<Client>, GenericRepository<Client>>();
+builder.Services.AddScoped<IGenericRepository<Product>, GenericRepository<Product>>();
+builder.Services.AddScoped<IGenericRepository<Order>, GenericRepository<Order>>();
+
+// Registrar los LINQ
+// Registrar servicios LINQ
+builder.Services.AddScoped<GetClientsWithOrders>();
+builder.Services.AddScoped<GetOrdersWithDetails>();
+builder.Services.AddScoped<GetSalesByClient>();
+builder.Services.AddScoped<GetClientsWithProductCount>();
+
+
+// Registrar UnitOfWork
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 // Agregar servicios de Swagger
 builder.Services.AddSwaggerGen();
