@@ -1,5 +1,6 @@
 using Examen_Roman_Qquelcca.Repositories.Interfaces;
 using Lab_09_Roman_Qquelcca.Models;
+using Lab_09_Roman_Qquelcca.Reports.Excel;
 using Lab_09_Roman_Qquelcca.Repositories;
 using Lab_09_Roman_Qquelcca.Repositories.Unit;
 using Lab_09_Roman_Qquelcca.Services;
@@ -26,6 +27,11 @@ builder.Services.AddScoped<GetClientsWithOrders>();
 builder.Services.AddScoped<GetOrdersWithDetails>();
 builder.Services.AddScoped<GetSalesByClient>();
 builder.Services.AddScoped<GetClientsWithProductCount>();
+builder.Services.AddScoped<ExcelReportService>();
+builder.Services.AddScoped<ExcelReportService>();
+builder.Services.AddScoped<Generar_Reporte_Clientes>();
+builder.Services.AddScoped<Generar_Reporte_Detalles>();
+
 
 
 // Registrar UnitOfWork

@@ -9,6 +9,8 @@ namespace Examen_Roman_Qquelcca.Repositories.Interfaces;
         IGenericRepository<Client> Clients { get; }
         IGenericRepository<Product> Products { get; }
         IGenericRepository<Order> Orders { get; }
+        IGenericRepository<Orderdetail> Orderdetails { get; }
+
 
         Task<int> SaveAsync();
     }
